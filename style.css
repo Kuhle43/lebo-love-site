@@ -66,7 +66,9 @@ body {
     font-style: italic;
 }
 
-/* 4. Photo Gallery Styling (The amazing part!) */
+/* --- UPDATED: Photo Gallery Styling (The amazing flip part!) --- */
+
+/* 4. Photo Gallery Styling */
 .gallery-section {
     padding: 40px 20px;
 }
@@ -87,50 +89,83 @@ body {
 }
 
 .photo-card {
-    overflow: hidden;
+    /* Set up the 3D space for the flip */
+    perspective: 1000px; 
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease;
+    /* Remove hover scale effect, as the flip is the new effect */
 }
 
-.photo-card:hover {
-    transform: scale(1.05); /* Zoom in slightly on hover */
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-}
-
-.photo-card img {
+/* This is the container that will do the actual flipping */
+.flip-content {
+    position: relative;
     width: 100%;
-    height: 200px; /* Uniform height for all images */
-    object-fit: cover; /* Ensures images fill the box without stretching */
+    height: 220px; /* **Matches your preferred fixed height** */
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d; /* Key to making it 3D */
+    border-radius: 10px;
+}
+
+/* Flip the card on hover */
+.photo-card:hover .flip-content {
+    transform: rotateY(180deg);
+}
+
+/* Style for both the front and back faces */
+.flip-front, .flip-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Key to making the back visible only when flipped */
+    border-radius: 10px;
+    display: flex; /* To center content */
+    align-items: center; /* To center content vertically */
+    justify-content: center; /* To center content horizontally */
+    padding: 15px;
+}
+
+/* Front Face: The Image */
+.flip-front {
+    background-color: white; /* Optional: Clean background behind image */
+    overflow: hidden;
+}
+
+.flip-front img {
+    width: 100%;
+    height: 220px; /* Must match the .flip-content height */
+    object-fit: cover; 
     display: block;
 }
 
-/* 5. Footer and General Styling */
-footer {
-    padding: 20px;
-    margin-top: 50px;
-    color: white;
-    background-color: var(--text-color);
-    font-size: 0.9em;
+/* Back Face: The Message */
+.flip-back {
+    background-color: var(--secondary-color); /* Use a lovely color for the message side */
+    color: white; /* Text color for the message */
+    transform: rotateY(180deg); /* Start flipped, so it rotates into view */
+    flex-direction: column;
 }
 
-/* 6. Mobile Responsiveness (For Phone View) */
-@media (max-width: 768px) {
-    .hero h1 {
-        font-size: 2.5em;
-    }
-    .photo-gallery {
-        /* Change to 2 columns on tablets/smaller screens */
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .love-message {
-        font-size: 1.2em;
-    }
+.back-caption {
+    font-size: 1.4em;
+    font-style: italic;
+    line-height: 1.5;
+    padding: 0 5px;
 }
 
-@media (max-width: 280px) {
+/* 5. Footer and General Styling (Keep the rest the same) */
+/* ... */
+/* 6. Mobile Responsiveness */
+@media (max-width: 500px) {
     .photo-gallery {
         /* Change to 1 column on mobile phones */
         grid-template-columns: 1fr;
+    }
+    /* NEW RULE: Adjust image size specifically for single-column mobile view */
+    .flip-content {
+        height: 280px; /* Adjust height for mobile */
+    }
+    .flip-front img {
+        height: 280px; /* Match the content height */
     }
 }
