@@ -93,14 +93,13 @@ body {
     perspective: 1000px; 
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-    /* Remove hover scale effect, as the flip is the new effect */
 }
 
 /* This is the container that will do the actual flipping */
 .flip-content {
     position: relative;
     width: 100%;
-    height: 220px; /* **Matches your preferred fixed height** */
+    height: 250px; /* **Matches your preferred fixed height** */
     text-align: center;
     transition: transform 0.6s;
     transform-style: preserve-3d; /* Key to making it 3D */
@@ -133,7 +132,7 @@ body {
 
 .flip-front img {
     width: 100%;
-    height: 220px; /* Must match the .flip-content height */
+    height: 250px; /* Must match the .flip-content height */
     object-fit: cover; 
     display: block;
 }
@@ -153,19 +152,131 @@ body {
     padding: 0 5px;
 }
 
-/* 5. Footer and General Styling (Keep the rest the same) */
-/* ... */
-/* 6. Mobile Responsiveness */
+/* 5. Footer and Final Image */
+
+.final-photo-section {
+    padding: 40px 20px;
+}
+
+.final-image {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+footer {
+    padding: 20px;
+    font-size: 1.1em;
+    color: var(--text-color);
+}
+
+/* 6. Mobile Responsiveness (Gallery and Hero) */
+@media (max-width: 768px) {
+    .photo-gallery {
+        /* Change to 2 columns on tablets/medium screens */
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 500px) {
+    .hero h1 {
+        font-size: 2.5em;
+    }
     .photo-gallery {
         /* Change to 1 column on mobile phones */
         grid-template-columns: 1fr;
     }
-    /* NEW RULE: Adjust image size specifically for single-column mobile view */
     .flip-content {
-        height: 280px; /* Adjust height for mobile */
+        height: 300px; /* Adjust height for mobile */
     }
     .flip-front img {
-        height: 280px; /* Match the content height */
+        height: 300px; /* Match the content height */
+    }
+}
+
+/* --- NEW: Bunny and Heart Animation --- */
+
+.bunny-container {
+    position: fixed; /* Stays in place when scrolling */
+    bottom: -150px; /* Start off-screen at the bottom */
+    left: 20px; /* Position from the left */
+    z-index: 1000; /* Ensure it's on top of everything */
+    width: 100px;
+    height: 150px;
+    pointer-events: none; /* Allows clicks to pass through to elements below */
+}
+
+.cute-bunny {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80px; /* Size of the bunny */
+    height: auto;
+    opacity: 0; /* Start invisible */
+    transform: translateX(-50px); /* Start slightly off-screen to the left */
+    transition: all 1.5s ease-out; /* Smooth animation for the bunny's entrance */
+}
+
+.cute-bunny.animate-bunny {
+    opacity: 1; /* Fade in */
+    transform: translateX(0); /* Move into position from the left */
+}
+
+.floating-heart {
+    position: absolute;
+    bottom: 80px; /* Position relative to bunny's hand/head */
+    left: 60px; /* Position relative to bunny's hand/head */
+    width: 40px; /* Size of the heart */
+    height: auto;
+    opacity: 0; /* Start invisible */
+    transform: translateY(20px) scale(0.5); /* Start small and slightly below */
+    transition: all 1.8s ease-in-out; /* Smooth animation for the heart's float */
+}
+
+.floating-heart.animate-heart {
+    opacity: 1; /* Fade in */
+    transform: translateY(-80px) scale(1.2); /* Float up and slightly larger */
+    animation: pulse-heart 1.5s infinite alternate ease-in-out; /* Pulsing effect */
+}
+
+/* Keyframe animation for the heart's pulsing effect */
+@keyframes pulse-heart {
+    0% {
+        transform: translateY(-80px) scale(1.2);
+    }
+    100% {
+        transform: translateY(-85px) scale(1.3);
+    }
+}
+
+
+/* Adjust for mobile if the bunny/heart placement is problematic */
+@media (max-width: 500px) {
+    .bunny-container {
+        left: 5px; /* Move bunny closer to edge on small screens */
+        bottom: -100px; /* Adjust starting position for smaller screens */
+        width: 80px;
+        height: 100px;
+    }
+
+    .cute-bunny {
+        width: 60px; /* Smaller bunny on mobile */
+    }
+
+    .floating-heart {
+        width: 30px; /* Smaller heart on mobile */
+        bottom: 60px; /* Adjust heart position relative to smaller bunny */
+        left: 45px;
+    }
+
+    @keyframes pulse-heart {
+        0% {
+            transform: translateY(-60px) scale(1.1); /* Adjusted for mobile heart size */
+        }
+        100% {
+            transform: translateY(-65px) scale(1.2);
+        }
     }
 }
