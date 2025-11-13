@@ -1,0 +1,136 @@
+/* 1. Global Reset and Base Styles */
+:root {
+    --primary-color: #e5989b; /* Soft Pink */
+    --secondary-color: #ffb4a2; /* Coral/Peach */
+    --background-color: #fffaf0; /* Light Cream/Off-White */
+    --text-color: #4a4e69; /* Dark Navy/Plum */
+    --accent-color: #6a0572; /* Deep Purple for emphasis */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Playfair Display', serif; /* Elegant Font */
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+/* 2. Header (Hero Section) Styling */
+.hero {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 100px 20px;
+    border-bottom-left-radius: 50% 10%;
+    border-bottom-right-radius: 50% 10%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hero h1 {
+    font-size: 3.5em;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.hero p {
+    font-size: 1.2em;
+    opacity: 0.8;
+}
+
+/* 3. Message Section Styling */
+.message-section {
+    padding: 60px 20px;
+    max-width: 800px;
+    margin: 40px auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.message-section h2 {
+    color: var(--secondary-color);
+    margin-bottom: 25px;
+    font-size: 2.5em;
+}
+
+.love-message {
+    font-size: 1.5em;
+    line-height: 1.8;
+    color: var(--text-color);
+    font-style: italic;
+}
+
+/* 4. Photo Gallery Styling (The amazing part!) */
+.gallery-section {
+    padding: 40px 20px;
+}
+
+.gallery-section h2 {
+    color: var(--accent-color);
+    margin-bottom: 40px;
+    font-size: 2.5em;
+}
+
+.photo-gallery {
+    display: grid;
+    /* Create 3 columns for desktop/laptop view */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.photo-card {
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.photo-card:hover {
+    transform: scale(1.05); /* Zoom in slightly on hover */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.photo-card img {
+    width: 100%;
+    height: 250px; /* Uniform height for all images */
+    object-fit: cover; /* Ensures images fill the box without stretching */
+    display: block;
+}
+
+/* 5. Footer and General Styling */
+footer {
+    padding: 20px;
+    margin-top: 50px;
+    color: white;
+    background-color: var(--text-color);
+    font-size: 0.9em;
+}
+
+/* 6. Mobile Responsiveness (For Phone View) */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5em;
+    }
+    .photo-gallery {
+        /* Change to 2 columns on tablets/smaller screens */
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .love-message {
+        font-size: 1.2em;
+    }
+}
+
+@media (max-width: 500px) {
+    .photo-gallery {
+        /* Change to 1 column on mobile phones */
+        grid-template-columns: 1fr;
+    }
+}
