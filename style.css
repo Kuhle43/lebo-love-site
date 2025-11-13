@@ -128,7 +128,7 @@ footer {
     }
 }
 
-@media (max-width: 300px) {
+@media (max-width: 280px) {
     .photo-gallery {
         /* Change to 1 column on mobile phones */
         grid-template-columns: 1fr;
