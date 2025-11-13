@@ -131,7 +131,7 @@ body {
 }
 
 .flip-front img {
-    width: 100%;
+    width: 120%;
     height: 250px; 
     object-fit: cover; 
     display: block;
