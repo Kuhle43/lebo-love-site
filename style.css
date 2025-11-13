@@ -99,10 +99,10 @@ body {
 .flip-content {
     position: relative;
     width: 100%;
-    height: 250px; /* **Matches your preferred fixed height** */
+    height: 250px; 
     text-align: center;
     transition: transform 0.6s;
-    transform-style: preserve-3d; /* Key to making it 3D */
+    transform-style: preserve-3d; 
     border-radius: 10px;
 }
 
@@ -116,32 +116,32 @@ body {
     position: absolute;
     width: 100%;
     height: 100%;
-    backface-visibility: hidden; /* Key to making the back visible only when flipped */
+    backface-visibility: hidden; 
     border-radius: 10px;
-    display: flex; /* To center content */
-    align-items: center; /* To center content vertically */
-    justify-content: center; /* To center content horizontally */
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
     padding: 15px;
 }
 
 /* Front Face: The Image */
 .flip-front {
-    background-color: white; /* Optional: Clean background behind image */
+    background-color: white; 
     overflow: hidden;
 }
 
 .flip-front img {
     width: 100%;
-    height: 250px; /* Must match the .flip-content height */
+    height: 250px; 
     object-fit: cover; 
     display: block;
 }
 
 /* Back Face: The Message */
 .flip-back {
-    background-color: var(--secondary-color); /* Use a lovely color for the message side */
-    color: white; /* Text color for the message */
-    transform: rotateY(180deg); /* Start flipped, so it rotates into view */
+    background-color: var(--secondary-color); 
+    color: white; 
+    transform: rotateY(180deg); 
     flex-direction: column;
 }
 
@@ -200,54 +200,54 @@ footer {
 
 .bunny-container {
     position: fixed; /* Stays in place when scrolling */
-    bottom: -150px; /* Start off-screen at the bottom */
-    left: 20px; /* Position from the left */
-    z-index: 1000; /* Ensure it's on top of everything */
-    width: 100px;
+    bottom: -50px; /* ADJUSTED: Start closer to the screen for a better slide-in */
+    left: 20px; 
+    z-index: 1000; 
+    width: 150px; /* Increased size to contain the larger bunny/heart */
     height: 150px;
-    pointer-events: none; /* Allows clicks to pass through to elements below */
+    pointer-events: none; 
 }
 
 .cute-bunny {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 80px; /* Size of the bunny */
+    width: 120px; /* ADJUSTED: Bigger bunny */
     height: auto;
-    opacity: 0; /* Start invisible */
-    transform: translateX(-50px); /* Start slightly off-screen to the left */
-    transition: all 1.5s ease-out; /* Smooth animation for the bunny's entrance */
+    opacity: 0; 
+    transform: translateX(-120px) translateY(50px); /* ADJUSTED: Start further left and slightly down */
+    transition: all 1.5s ease-out; 
 }
 
 .cute-bunny.animate-bunny {
-    opacity: 1; /* Fade in */
-    transform: translateX(0); /* Move into position from the left */
+    opacity: 1; 
+    transform: translateX(0) translateY(0); /* Bunny slides in from bottom-left */
 }
 
 .floating-heart {
     position: absolute;
-    bottom: 80px; /* Position relative to bunny's hand/head */
-    left: 60px; /* Position relative to bunny's hand/head */
-    width: 40px; /* Size of the heart */
+    bottom: 110px; /* ADJUSTED: Higher position relative to the bigger bunny */
+    left: 90px; /* ADJUSTED: Position relative to the bigger bunny */
+    width: 60px; /* ADJUSTED: Bigger heart */
     height: auto;
-    opacity: 0; /* Start invisible */
-    transform: translateY(20px) scale(0.5); /* Start small and slightly below */
-    transition: all 1.8s ease-in-out; /* Smooth animation for the heart's float */
+    opacity: 0; 
+    transform: translateY(20px) scale(0.5); 
+    transition: all 1.8s ease-in-out; 
 }
 
 .floating-heart.animate-heart {
-    opacity: 1; /* Fade in */
-    transform: translateY(-80px) scale(1.2); /* Float up and slightly larger */
-    animation: pulse-heart 1.5s infinite alternate ease-in-out; /* Pulsing effect */
+    opacity: 1; 
+    transform: translateY(-100px) scale(1.4); /* Float higher and slightly larger */
+    animation: pulse-heart 1.5s infinite alternate ease-in-out; 
 }
 
 /* Keyframe animation for the heart's pulsing effect */
 @keyframes pulse-heart {
     0% {
-        transform: translateY(-80px) scale(1.2);
+        transform: translateY(-100px) scale(1.4);
     }
     100% {
-        transform: translateY(-85px) scale(1.3);
+        transform: translateY(-110px) scale(1.5); /* Increased pulse size */
     }
 }
 
@@ -255,28 +255,33 @@ footer {
 /* Adjust for mobile if the bunny/heart placement is problematic */
 @media (max-width: 500px) {
     .bunny-container {
-        left: 5px; /* Move bunny closer to edge on small screens */
-        bottom: -100px; /* Adjust starting position for smaller screens */
-        width: 80px;
+        left: 5px; 
+        bottom: -50px; /* Keep bottom closer to screen */
+        width: 100px; /* Slightly smaller container on mobile */
         height: 100px;
     }
 
     .cute-bunny {
-        width: 60px; /* Smaller bunny on mobile */
+        width: 80px; /* Adjusted bunny size for mobile */
+        transform: translateX(-80px) translateY(50px);
+    }
+    
+    .cute-bunny.animate-bunny {
+        transform: translateX(0) translateY(0);
     }
 
     .floating-heart {
-        width: 30px; /* Smaller heart on mobile */
-        bottom: 60px; /* Adjust heart position relative to smaller bunny */
-        left: 45px;
+        width: 40px; /* Adjusted heart size for mobile */
+        bottom: 70px; /* Adjusted heart position */
+        left: 60px;
     }
 
     @keyframes pulse-heart {
         0% {
-            transform: translateY(-60px) scale(1.1); /* Adjusted for mobile heart size */
+            transform: translateY(-70px) scale(1.2); 
         }
         100% {
-            transform: translateY(-65px) scale(1.2);
+            transform: translateY(-75px) scale(1.3);
         }
     }
 }
